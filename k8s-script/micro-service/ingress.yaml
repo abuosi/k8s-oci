@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: gateway
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /gateway
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /gateway
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway
+            port:
+              number: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: time
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /time
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /time
+        pathType: Prefix
+        backend:
+          service:
+            name: time
+            port:
+              number: 8080

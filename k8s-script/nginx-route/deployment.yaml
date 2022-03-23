@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-blue
+spec:
+    selector:
+        matchLabels:
+            app: nginx-blue
+    template:
+        metadata:
+            labels:
+                app: nginx-blue
+        spec:
+            containers:
+            - name: nginx-blue
+              image: abuosi/nginx:blue
+              ports:
+              - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-green
+spec:
+    selector:
+        matchLabels:
+            app: nginx-green
+    template:
+        metadata:
+            labels:
+                app: nginx-green
+        spec:
+            containers:
+            - name: nginx-green
+              image: abuosi/nginx:green
+              ports:
+              - containerPort: 80
