@@ -60,14 +60,68 @@ This Terraform configuration:
 
 ## Cluster Customization
 
+This steps is opitional, so you could use the stacks of your preference.
+
 ### 1. Install NGINX Ingress Controller
 
-### 2. Install Cluster 1Monitoring Stack
+Execute the command 
 
+``` bash
+helm upgrade --install ingress-nginx ingress-nginx \
+     --repo https://kubernetes.github.io/ingress-nginx \
+     --namespace ingress-nginx --create-namespace
+``` 
+
+### 2. Install Cluster Monitoring Stack
+
+- Clone the repository official of [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)
+- Follow the installation instruction on `README` file
 ## Deploy Example Applications
 
+The application files deployment are on folder `k8s`
+
+```bash
+cd k8s
+```
 ### 1. Ingress Route
 
+Instalation
+
+```bash
+kubectl create ns nginx-route
+kubectl apply ./nginx-route -n nginx-route
+```
+Verify it is work
+
+``` 
+curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/blue
+curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/green
+```
 ### 2. Micro Service Example
 
+Instalation
+
+```bash
+kubectl create ns micro-service
+kubectl apply ./micro-service -n micro-service
+```
+Verify it is work
+
+``` 
+curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/time
+curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/gateway
+```
+
 ### 3. Java Quarkus Example
+
+Instalation
+
+```bash
+kubectl create ns my-hostname
+kubectl apply ./my-hostname -n my-hostname
+```
+Verify it is work
+
+``` 
+curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/hello
+```
