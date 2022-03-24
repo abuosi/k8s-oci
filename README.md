@@ -2,7 +2,7 @@
 
 This project is based on project [ampernetacle](https://github.com/jpetazzo/ampernetacle) from [Jérôme Petazzoni](https://github.com/jpetazzo). Thank you very much !
 
-The modifition on original project was to reduce the number of nodes to 3, and increase the vcpu quantity for master (2 vcpus) and increase the memory of nodes (8gb ram). 
+The modifition on original project was to reduce the number of nodes to 3, and increase the vcpu quantity for the master (2 vcpus) and increase the memory of nodes (8gb ram). 
 
 ## Getting started
 
@@ -91,7 +91,7 @@ Instalation
 kubectl create ns nginx-route
 kubectl apply ./nginx-route -n nginx-route
 ```
-Verify it is work
+Check it is working
 
 ``` 
 curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/blue
@@ -105,22 +105,21 @@ Instalation
 kubectl create ns micro-service
 kubectl apply ./micro-service -n micro-service
 ```
-Verify it is work
+Check it is working
 
 ``` 
-curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/time
 curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/gateway
 ```
 
 ### 3. Java Quarkus Example
 
-Instalation
+Installation
 
 ```bash
 kubectl create ns my-hostname
 kubectl apply ./my-hostname -n my-hostname
 ```
-Verify it is work
+Check it is working
 
 ``` 
 curl http://<<PUBLIC-IP-NODE>>:<<PORT-INGRESS>>/hello
